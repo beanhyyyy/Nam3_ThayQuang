@@ -3,14 +3,25 @@ var router = express.Router();
 // daos
 var ProductDAO = require('../daos/ProductDAO.js');
 var OrderDAO = require('../daos/OrderDAO.js');
+
 // routes
 router.get('/', function (req, res) {
   res.redirect('/home');
 });
+
+router.get('/information', function (req, res) {
+  res.render('customer/information.ejs');
+});
+
+router.get('/blog', function (req, res) {
+  res.render('customer/blog.ejs');
+});
+
 router.get('/home', async function (req, res) {
   var products = await ProductDAO.getAll();
   res.render('customer/home.ejs', { products: products });
 });
+
 router.get('/viewproduct/:id', async function (req, res) {
   var id = req.params.id;
   var product = await ProductDAO.getDetails(id);
@@ -77,8 +88,10 @@ router.post('/checkout', async function (req, res) {
   for (var item of req.session.mycart) {
     total += item.product.price * item.quantity;
   }
-  var order = { custName: custName, custPhone: custPhone, datetime: now, 
-    items: req.session.mycart, total: total, status: 'PENDING'};
+  var order = {
+    custName: custName, custPhone: custPhone, datetime: now,
+    items: req.session.mycart, total: total, status: 'PENDING'
+  };
   var result = await OrderDAO.insert(order);
   if (result) {
     delete req.session.mycart;
@@ -87,4 +100,8 @@ router.post('/checkout', async function (req, res) {
     res.redirect('/mycart');
   }
 });
+
+
+
+
 module.exports = router;
