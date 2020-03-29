@@ -1,24 +1,32 @@
 <html>
-
 <body>
-  <h2>PRODUCT DETAILS</h2>
-  <table>
-    <tr>
-      <td>
-        <img src="data:image/jpg;base64,<%= product.image %>" width="400" height="400" />
-      </td>
-      <td>
-        ID: <%= product._id %><br />
-        Name: <%= product.name %><br />
-        Price: <%= product.price %><br />
-        <form action="/add2cart" method="POST">
-          <input type="hidden" name="txtID" value="<%= product._id %>" />
-          Quantity: <input type="text" name="txtQuantity" /><br />
-          <input type="submit" value="ADD TO CART" />
-        </form>
-      </td>
-    </tr>
+  <table class="table-responsive" style="padding-right: 5px; padding-left: 5px;">
+    <table align="center" class="table table-bordered">
+      <tr>
+        <h2 align="center" style="background-color: #eaf0ff;">CUSTOMER HOME</h2>
+      </tr>
+      <tr>
+        <td align="center">
+          <img src="data:image/jpg;base64,<%= product.image %>" width="auto" height="auto" />
+        </td>
+        <td>
+          ID: <%= product._id %><br />
+          Name: <%= product.name %><br />
+          Description: <%= product.description %><br />
+          Price: <%= product.price %><br />
+          <Address>Address: <%= product.address %></Address>
+          <form action="/add2cart" method="POST">
+            <input type="hidden" name="txtID" value="<%= product._id %>" />
+            Quantity: <input type="text" name="txtQuantity" /><br />
+            <br>
+            <button type="submit" value="ADD TO CART" class="btn btn-primary" onclick="return confirm('ARE YOU SURE ?')">ADD TO CART</button>
+          </form>
+        </td>
+      </tr>
+    </table>
   </table>
+  <h2 align="center" style="background-color: #eaf0ff;">-</h2>
+
 </body>
 
 </html>

@@ -1,0 +1,37 @@
+<htm>
+
+    <body>
+        <table class="table-responsive" >
+            <table align="center" class="table table-bordered" >
+                <h2 align="center" style="background-color: #eaf0ff;">CONTACT LIST</h2>
+
+                <tr>
+                    <th>ID</th>
+                    <th>CustNameOfContact</th>
+                    <th>CustPhoneOfContact</th>
+                    <th>DateTime</th>
+                    <th>CustDescriptionOfContact</th>
+
+                </tr>
+                <%  for (var item of contacts) { %>
+                <tr>
+                    <td>
+                        <a href="/admin/contact?id=<%= item._id %>">
+                            <%= item._id %>
+                        </a>
+                    </td>
+                    <td><%= item.name %></td>
+                    <td><%= item.phone %></td>
+                    <td><%= new Date(item.datetime).toLocaleString() %></td>
+                    <td><%= item.description %></td>
+                </tr>
+                <% } %>
+                
+            </table>
+        </table>
+        <h2 align="center" style="background-color: #eaf0ff;">-</h2>
+
+
+
+    </body>
+</htm>

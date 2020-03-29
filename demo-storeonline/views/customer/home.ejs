@@ -1,8 +1,13 @@
 <html>
-  <body>
-    <h2 align="center">CUSTOMER HOME</h2>
-    <h3 align="center"><a href="/mycart">My cart</a> have <%= (session.mycart) ? session.mycart.length : 0 %> items</h3>
-    <table align="center">
+
+<body>
+
+  <h3 align="center"><a href="/mycart">My cart</a> have <%= (session.mycart) ? session.mycart.length : 0 %> items</h3>
+  <div class="table-responsive" style="padding-right: 5px; padding-left: 5px;">
+    <table align="center" class="table table-bordered">
+      <tr>
+        <h2 align="center" style="background-color: #eaf0ff;">CUSTOMER HOME</h2>
+      </tr>
       <% var nCols = 3;
       var nRows = Math.ceil(products.length / nCols);
       for (var r = 0; r < nRows; r++) { %>
@@ -13,14 +18,20 @@
         %>
         <td align="center">
           <a href="/viewproduct/<%= product._id %>">
-            <img src="data:image/jpg;base64,<%= product.image %>" width="300" height="300" /><br/>
+            <img src="data:image/jpg;base64,<%= product.image %>" width="auto" height="auto" /><br />
           </a>
-          <%= product.name %><br/>
-          <%= product.price %><br/>
+          <br>
+          <strong><%= product.name %><br /></strong>
+          <br>
+          <Address><%= product.description %><br /></Address>
         </td>
         <% }  } %>
       </tr>
       <% } %>
     </table>
-  </body>
+  </div>
+
+  
+</body>
+
 </html>

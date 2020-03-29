@@ -1,12 +1,12 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://kanghy:0979320779Qwe@cluster0-9lfpr.mongodb.net/dbFinal";
-var OrderDAO = {
-  insert: function (order) {
+var CustomerDAO = {
+  insert: function (customer) {
     return new Promise(function (resolve, reject) {
       MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("dbFinal");
-        dbo.collection("order").insertOne(order, function (err, res) {
+        dbo.collection("customer").insertOne(customer, function (err, res) {
           if (err) return reject(err);
           resolve(res.insertedCount > 0 ? true : false);
           db.close();
@@ -20,7 +20,7 @@ var OrderDAO = {
         if (err) throw err;
         var dbo = db.db("dbFinal");
         var query = {};
-        dbo.collection("order").find(query).toArray(function (err, res) {
+        dbo.collection("customer").find(query).toArray(function (err, res) {
           if (err) return reject(err);
           resolve(res);
           db.close();
@@ -28,36 +28,19 @@ var OrderDAO = {
       });
     });
   },
-  getDetails: function(id) {
+  get: function(username, password) {
     return new Promise(function (resolve, reject) {
       MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("dbFinal");
-        var ObjectId = require('mongodb').ObjectId;
-        var query = { _id: ObjectId(id) };
-        dbo.collection("order").findOne(query, function (err, res) {
+        var query = { username: username, password: password };
+        dbo.collection("customer").findOne(query, function (err, res) {
           if (err) return reject(err);
           resolve(res);
-          db.close();
-        });
-      });
-    });
-  },
-  update: function(id, newStatus) {
-    return new Promise(function (resolve, reject) {
-      MongoClient.connect(url, function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("dbFinal");
-        var ObjectId = require('mongodb').ObjectId;
-        var query = { _id: ObjectId(id) };
-        var newvalues = { $set: { status: newStatus } };
-        dbo.collection("order").updateOne(query, newvalues, function (err, res) {
-          if (err) reject(err);
-          resolve(res.result.nModified > 0 ? true : false);
           db.close();
         });
       });
     });
   }
 };
-module.exports = OrderDAO;
+module.exports = CustomerDAO;

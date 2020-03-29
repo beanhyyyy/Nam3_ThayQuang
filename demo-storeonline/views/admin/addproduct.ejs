@@ -1,10 +1,23 @@
 <html>
-  <body>
-    <form action="addproduct" method="POST" enctype="multipart/form-data">
-      <table>
+
+<body>
+  <form action="addproduct" method="POST" enctype="multipart/form-data" style="padding-right: 5px; padding-left: 5px;">
+    <table class="table-responsive" >
+      <table align="center" class="table table-bordered">
         <tr>
-          <td>Name</td>
-          <td><input type="text" name="txtName" /></td>
+          <h2 align="center" style="background-color: #eaf0ff;">ADD PRODUCT</h2>
+        </tr>
+        <tr>
+          <td>Product_Name</td>
+          <td><input type="text" name="txtProperty_Name" /></td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td><input type="text" name="txtDescription" /></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><input type="text" name="txtAddress" /></td>
         </tr>
         <tr>
           <td>Price</td>
@@ -15,10 +28,14 @@
           <td><input type="file" name="fileImage" /></td>
         </tr>
         <tr>
-          <td></td>
-          <td><input type="submit" value="ADD NEW" /></td>
+          <td>
+            
+          </td>
+          <td><button type="submit" value="ADD NEW" class="btn btn-primary" onclick="return confirm('ARE YOU SURE ?')">ADD NEW</button></td>
         </tr>
       </table>
-    </form>
-  </body>
+    </table>
+  </form>
+  <h2 align="center" style="background-color: #eaf0ff;">-</h2>
+</body>
 </html>
